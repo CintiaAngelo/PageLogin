@@ -1,0 +1,56 @@
+<app-header></app-header>
+
+<div class="home-container">
+  <h1>{{ title }}</h1>
+
+  <!-- Boas-vindas -->
+  <div class="welcome-card" *ngIf="nome; else loginPrompt">
+    <h2>Olá, {{ nome }}!</h2>
+    <p>Bem-vindo(a) ao seu painel de estudos. Aqui você pode acompanhar suas disciplinas e atividades.</p>
+  </div>
+
+  <ng-template #loginPrompt>
+    <div class="welcome-card">
+      <h2>Bem-vindo(a)!</h2>
+      <p>Digite seu nome para começar a organizar seus estudos.</p>
+    </div>
+  </ng-template>
+
+  <!-- Interação para inserir nome -->
+  <div class="interaction-card">
+    <input [(ngModel)]="nome" type="text" placeholder="Digite seu nome..." />
+    <div class="button-group">
+      <button (click)="entrar()">Confirmar Nome</button>
+      <button (click)="limpar()">Limpar</button>
+    </div>
+  </div>
+
+  <!-- Cards de estudo -->
+  <div class="cards-container">
+    <div class="feature-card">
+      <h3>Minhas Disciplinas</h3>
+      <p>Veja as matérias que você está estudando atualmente.</p>
+      <button (click)="verDisciplinas()">Ver Disciplinas</button>
+    </div>
+
+    <div class="feature-card">
+      <h3>Progresso de Estudos</h3>
+      <p>Acompanhe o seu progresso nas atividades e provas.</p>
+      <button (click)="verProgresso()">Ver Progresso</button>
+    </div>
+
+    <div class="feature-card">
+      <h3>Atividades Recentes</h3>
+      <p>Confira as últimas tarefas e exercícios disponíveis.</p>
+      <button (click)="verAtividades()">Ver Atividades</button>
+    </div>
+
+    <div class="feature-card">
+      <h3>Contador de Acessos</h3>
+      <p>Quantas vezes você interagiu com o painel.</p>
+      <app-conta-numeros [numeros]="numerosDaHome"></app-conta-numeros>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
